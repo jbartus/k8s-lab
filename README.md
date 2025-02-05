@@ -5,6 +5,7 @@ cd k8s-lab
 ```
 
 ## run terraform
+```
 terraform init
 terraform apply -auto-approve
 ```
