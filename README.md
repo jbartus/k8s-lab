@@ -1,3 +1,8 @@
+## pre-requisites
+- aws cli (configured with admin access)
+- kubectl
+- terraform
+
 ## clone the repo
 ```
 git clone https://github.com/jbartus/k8s-lab.git
