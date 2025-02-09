@@ -6,3 +6,7 @@ EFS_ID="$(terraform output -raw efs_id)" envsubst < my-app/efs-pv.yaml.template 
 kubectl apply -f my-app/
 kubectl exec -it "$(kubectl get pods -l app=my-app --output=jsonpath='{.items[0].metadata.name}')" -- /bin/bash -c "echo '<?php phpinfo(); ?>' > index.php && chown www-data:www-data index.php"
 ```
+
+```
+kubectl delete service my-app-service
+```
