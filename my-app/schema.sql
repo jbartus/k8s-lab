@@ -1,0 +1,16 @@
+CREATE DATABASE blog;
+
+USE blog;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+    author INT,
+    FOREIGN KEY (author) REFERENCES users(id)
+);
