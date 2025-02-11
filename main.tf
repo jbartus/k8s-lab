@@ -23,8 +23,17 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
   cluster_addons = {
-    aws-ebs-csi-driver = {
-      most_recent = true
+    aws-ebs-csi-driver = {}
+    aws-efs-csi-driver = {}
+  }
+
+  eks_managed_node_group_defaults = {
+    instance_types = ["t4g.large"]
+    ami_type       = "AL2023_ARM_64_STANDARD"
+
+    iam_role_additional_policies = {
+      AmazonEBSCSIDriverPolicy           = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+      AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
     }
   }
 
@@ -33,11 +42,7 @@ module "eks" {
       min_size      = 1
       max_size      = 6
       desired_size  = 2
-      instance_type = ["t4g.large"]
       capacity_type = "SPOT"
-      iam_role_additional_policies = {
-        AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-      }
     }
   }
 }
