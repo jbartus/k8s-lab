@@ -24,3 +24,6 @@ kubectl cp my-app/index.php "$(kubectl get pods -l app=my-app --output=jsonpath=
 ```
 kubectl delete service my-app-service
 ```
+
+# FIX: have to clean up ecr somehow
+# FIX: orphaning ebs volumes
